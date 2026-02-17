@@ -19,7 +19,6 @@ int main()
         if (tmpCuv >= nrWords)
             break;
     }
-    reverseMatrix(words, nrWords);
     sort(words, nrWords);
     for (int i = 0; i < nrWords; i++) {
         printf("%s\n", words[i]);
@@ -45,16 +44,6 @@ int length(char* sir) {
     return index;
 }
 
-// functie de inversare a matricei
-void reverseMatrix(char matrix[][255], int rows) {
-    for (int i = 0; i < rows / 2; i++) {
-        char temp[255];
-        copy(temp, matrix[i]);
-        copy(matrix[i], matrix[rows - i - 1]);
-        copy(matrix[rows - i - 1], temp);
-    }
-}
-
 // functie de comparare a doua stringuri 
 int compare(char* str1, char* str2) {
     int index = 0;
@@ -73,14 +62,21 @@ int compare(char* str1, char* str2) {
         return 1;
 }
 
-// sortez doar elementele de aceeasi dimensiune lexicografic
+// sortez si daca au aceeasi lungime le sortez lexicografic
 void sort(char matrix[][255], int rows) {
     for (int i = 0; i < rows - 1; i++)
-        for (int j = 0; j < rows; j++)
-            if (compare(matrix[i], matrix[j]) < 0 && length(matrix[i]) == length(matrix[j])) {
+        for (int j = i + 1; j < rows; j++) {
+            if (length(matrix[i]) < length(matrix[j])) {
                 char tmp[255];
-                copy(tmp, matrix[i]);
-                copy(matrix[i], matrix[j]);
+                copy(tmp, matrix[i]);       
+                copy(matrix[i], matrix[j]); 
                 copy(matrix[j], tmp);
             }
+            else if (length(matrix[i]) == length(matrix[j]) && compare(matrix[i], matrix[j]) > 0) {
+                char tmp[255];
+                copy(tmp, matrix[i]);       
+                copy(matrix[i], matrix[j]); 
+                copy(matrix[j], tmp);
+            }
+        }
 }
