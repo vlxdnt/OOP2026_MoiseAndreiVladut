@@ -66,12 +66,14 @@ int compare(char* str1, char* str2) {
 void sort(char matrix[][255], int rows) {
     for (int i = 0; i < rows - 1; i++)
         for (int j = i + 1; j < rows; j++) {
+
             if (length(matrix[i]) < length(matrix[j])) {
                 char tmp[255];
                 copy(tmp, matrix[i]);       
                 copy(matrix[i], matrix[j]); 
                 copy(matrix[j], tmp);
             }
+            
             else if (length(matrix[i]) == length(matrix[j]) && compare(matrix[i], matrix[j]) > 0) {
                 char tmp[255];
                 copy(tmp, matrix[i]);       
