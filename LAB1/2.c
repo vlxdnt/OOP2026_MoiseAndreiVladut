@@ -2,7 +2,6 @@
 
 void copy(char* dest, char* src);
 int length(char* sir);
-void reverseMatrix(char matrix[][255], int rows);
 int compare(char* str1, char* str2);
 void sort(char matrix[][255], int rows);
 
