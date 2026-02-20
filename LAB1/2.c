@@ -7,18 +7,19 @@ void sort(char matrix[][255], int rows);
 
 int main()
 {
-    char word[20];
+    char word[255];
     char words[255][255];
     int nrWords;
     scanf("%d", &nrWords);
     int tmpCuv = 0;
-    while (scanf("%19s", word)) {
+    while (scanf("%s", word)) {
         copy(words[tmpCuv], word);
         tmpCuv++;
         if (tmpCuv >= nrWords)
             break;
     }
     sort(words, nrWords);
+    printf("---------------------------------\n");
     for (int i = 0; i < nrWords; i++) {
         printf("%s\n", words[i]);
     }
