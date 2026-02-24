@@ -14,7 +14,7 @@ void MovieSeries::add(Movie* movie) {
 void MovieSeries::print() {
     for (int i = 0; i < count; i++) {
         printf("Movie #%d\n", i + 1);
-        printf("Name: %s\n", movies[i]->get_name().c_str());
+        printf("Name: %s\n", movies[i]->get_name());
         printf("Year: %d\n", movies[i]->get_year());
         printf("Score: %.1f\n", movies[i]->get_score());
         printf("Length: %d minutes\n", movies[i]->get_length());

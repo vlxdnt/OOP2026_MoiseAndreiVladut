@@ -1,18 +1,17 @@
 #pragma once
-#include <string>
 
 class Student {
     private:
-        std::string name;
+        char name[255];
         float mathGrade;
         float englishGrade;
         float historyGrade;
     public:
-        void SetName(std::string str);
+        void SetName(const char* str);
         void SetMathGrade(float x);
         void SetEnglishGrade(float x);
         void SetHistoryGrade(float x);
-        std::string GetName();
+        char* GetName();
         float GetMathGrade();
         float GetEnglishGrade();
         float GetHistoryGrade();

@@ -1,11 +1,19 @@
 #include "GlobalFunctions.h"
 
-int CompareName(std::string firstStudent, std::string secondStudent) {
-    if (firstStudent == secondStudent)
+int CompareName(const char* firstStudent, const char* secondStudent) {
+    int i = 0;
+    while (firstStudent[i] != '\0' && secondStudent[i] != '\0') {
+        if (firstStudent[i] > secondStudent[i])
+            return 1;
+        if (firstStudent[i] < secondStudent[i])
+            return -1;
+        i++;
+    }
+    if (firstStudent[i] == '\0' && secondStudent[i] == '\0')
         return 0;
-    if (firstStudent > secondStudent)
-        return 1;
-    if (firstStudent < secondStudent)
+    if (firstStudent[i] == '\0')
+        return -1;
+    return 1;
         return -1;
 }
 

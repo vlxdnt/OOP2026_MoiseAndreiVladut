@@ -1,7 +1,12 @@
 #include "MovieClass.h"
 
-void Movie::set_name(std::string str) {
-    name = str;
+void Movie::set_name(char* str) {
+    int i = 0;
+    while (i < 255 && str[i] != '\0') {
+        name[i] = str[i];
+        i++;
+    }
+    name[i] = '\0';
 }
 
 void Movie::set_year(int y) {
@@ -18,20 +23,20 @@ void Movie::set_length(int x) {
     length = x;
 }
 
-std::string Movie::get_name() {
-    return name;
+char* Movie::get_name() {
+    return this->name;
 }
 
 int Movie::get_year() {
-    return year;
+    return this->year;
 }
 
 double Movie::get_score() {
-    return score;
+    return this->score;
 }
 
 int Movie::get_length() {
-    return length;
+    return this->length;
 }
 
 int Movie::get_passed_years(int current_year, int release_year) {

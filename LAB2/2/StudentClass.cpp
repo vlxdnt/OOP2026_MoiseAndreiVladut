@@ -1,7 +1,12 @@
 #include "StudentClass.h"
 
-void Student::SetName(std::string str) {
-    name = str;
+void Student::SetName(const char* str) {
+    int i = 0;
+    while (i < 255 && str[i] != '\0') {
+        name[i] = str[i];
+        i++;
+    }
+    name[i] = '\0';
 }
 
 void Student::SetEnglishGrade(float x) {
@@ -22,20 +27,20 @@ void Student::SetMathGrade(float x) {
     }
 }
 
-std::string Student::GetName() {
-    return name;
+char* Student::GetName() {
+    return this->name;
 }
 
 float Student::GetEnglishGrade() {
-    return englishGrade;
+    return this->englishGrade;
 }
 
 float Student::GetHistoryGrade() {
-    return historyGrade;
+    return this->historyGrade;
 }
 
 float Student::GetMathGrade() {
-    return mathGrade;
+    return this->mathGrade;
 }
 
 float Student::GetAverageGrade() {

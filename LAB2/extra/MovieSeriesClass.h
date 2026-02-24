@@ -1,4 +1,5 @@
 #include "MovieClass.h"
+#include <stdio.h>
 
 class MovieSeries {
     private:
