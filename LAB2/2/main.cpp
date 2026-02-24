@@ -1,5 +1,6 @@
 #include "GlobalFunctions.h"
 #include "StudentClass.h"
+#include <stdio.h>
 
 int main()
 {
@@ -13,13 +14,13 @@ int main()
     student2.SetHistoryGrade(8);
     student2.SetMathGrade(6);
     
-    printf("%s\n", student1.GetName().c_str());
+    printf("%s\n", student1.GetName());
     printf("English grade: %f\n", student1.GetEnglishGrade());
     printf("Math grade: %f\n", student1.GetMathGrade());
     printf("History grade: %f\n", student1.GetHistoryGrade());
     printf("Average grade: %f\n", student1.GetAverageGrade());
 
-    printf("%s\n", student2.GetName().c_str());
+    printf("%s\n", student2.GetName());
     printf("English grade: %f\n", student2.GetEnglishGrade());
     printf("Math grade: %f\n", student2.GetMathGrade());
     printf("History grade: %f\n", student2.GetHistoryGrade());

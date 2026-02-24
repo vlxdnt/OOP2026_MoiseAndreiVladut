@@ -1,6 +1,6 @@
 #include "GlobalFunctions.h"
 
-int CompareName(const char* firstStudent, const char* secondStudent) {
+int CompareName(char* firstStudent, char* secondStudent) {
     int i = 0;
     while (firstStudent[i] != '\0' && secondStudent[i] != '\0') {
         if (firstStudent[i] > secondStudent[i])
