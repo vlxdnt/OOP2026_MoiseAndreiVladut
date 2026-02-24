@@ -1,3 +1,4 @@
+#pragma once
 #include "MovieClass.h"
 #include <stdio.h>
 
