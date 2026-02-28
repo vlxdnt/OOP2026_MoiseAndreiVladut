@@ -1,9 +1,18 @@
 class NumberList {
-        int numbers[10];
+        int *numbers;
+        int capacity;
         int count;
+        void Resize();
     public:
-        void Init();
+        NumberList() {
+            count = 0;
+            capacity = 4;
+            numbers = new int[capacity];
+        }
         bool Add(int x);
         void Sort();
         void Print();
+        ~NumberList() {
+            delete[] numbers;
+        }
 };

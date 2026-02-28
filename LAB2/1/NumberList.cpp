@@ -1,13 +1,20 @@
 #include "NumberList.h"
 #include <stdio.h>
 
-void NumberList::Init() {
-    count = 0;
+void NumberList::Resize() {
+    capacity *= 2;
+
+    int* temp = new int[capacity];
+    for (int i = 0; i < count; i++)
+        temp[i] = numbers[i];
+
+    delete[] numbers;
+    numbers = temp;
 }
 
 bool NumberList::Add(int x) {
-    if (count >= 10)
-        return false;
+    if (count >= capacity)
+        Resize();
 
     numbers[count++] = x;
     return true;
