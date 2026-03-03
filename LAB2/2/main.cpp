@@ -27,8 +27,10 @@ int main()
     printf("Average grade: %f\n", student2.GetAverageGrade());
 
     printf("Compare name: %d\n", CompareName(student1.GetName(), student2.GetName()));
-    printf("Compare math grades: %d\n", CompareMathGrade(student1.GetMathGrade(), student2.GetMathGrade()));
-    printf("Compare english grades: %d\n", CompareEnglishGrade(student1.GetEnglishGrade(), student2.GetEnglishGrade()));
+    float mate1 = student1.GetMathGrade(), mate2 = student2.GetMathGrade();
+    printf("Compare math grades: %d\n", CompareMathGrade(mate1, mate2));
+    float eng1 = student1.GetEnglishGrade(), eng2 = student2.GetEnglishGrade();
+    printf("Compare english grades: %d\n", CompareEnglishGrade(&eng1, &eng2));
     printf("Compare history grades: %d\n", CompareHistoryGrade(student1.GetHistoryGrade(), student2.GetHistoryGrade()));
     printf("Compare average grades: %d\n", CompareAverageGrade(student1.GetAverageGrade(), student2.GetAverageGrade()));
     return 0;

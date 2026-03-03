@@ -17,7 +17,7 @@ int CompareName(char* firstStudent, char* secondStudent) {
         return -1;
 }
 
-int CompareMathGrade(float firstGrade, float secondGrade) {
+int CompareMathGrade(float &firstGrade, float &secondGrade) {
     if (firstGrade == secondGrade)
         return 0;
     if (firstGrade > secondGrade)
@@ -26,12 +26,12 @@ int CompareMathGrade(float firstGrade, float secondGrade) {
         return -1;
 }
 
-int CompareEnglishGrade(float firstGrade, float secondGrade) {
-    if (firstGrade == secondGrade)
+int CompareEnglishGrade(float *firstGrade, float *secondGrade) {
+    if (*firstGrade == *secondGrade)
         return 0;
-    if (firstGrade > secondGrade)
+    if (*firstGrade > *secondGrade)
         return 1;
-    if (firstGrade < secondGrade)
+    if (*firstGrade < *secondGrade)
         return -1;
 }
 
