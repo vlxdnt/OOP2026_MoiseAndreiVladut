@@ -33,7 +33,7 @@ void Canvas::Clear() {
 }
 
 void Canvas::SetPoint(int x, int y, char ch) {
-    matrix[x][y] = ch;
+    matrix[y][x] = ch;
 }
 
 void Canvas::DrawLine(int x1, int y1, int x2, int y2, char ch) {
@@ -50,8 +50,8 @@ void Canvas::DrawLine(int x1, int y1, int x2, int y2, char ch) {
 
     while (true) {
         // verific sa fie in bounds
-        if (x1 >= 0 && x1 <= w && y1 >= 0 && y1 <= h)
-            matrix[x1][y1] = ch;
+        if (x1 >= 0 && x1 < w && y1 >= 0 && y1 < h)
+            matrix[y1][x1] = ch;
 
         // am ajuns cu linia in punctul 2
         if (x1 == x2 && y1 == y2) break;
@@ -78,7 +78,7 @@ void Canvas::DrawRect(int left, int top, int right, int bottom, char ch) {
 }
 
 void Canvas::FillRect(int left, int top, int right, int bottom, char ch) {
-    for (int i = top; i < bottom; i++) {
+    for (int i = top; i <= bottom; i++) {
         DrawLine(left, i, right, i, ch);
     }
 }
