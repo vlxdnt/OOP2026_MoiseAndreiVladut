@@ -51,7 +51,7 @@ void Canvas::DrawLine(int x1, int y1, int x2, int y2, char ch) {
     while (true) {
         // verific sa fie in bounds
         if (x1 >= 0 && x1 < w && y1 >= 0 && y1 < h)
-            matrix[y1][x1] = ch;
+            Canvas::SetPoint(y1, x1, ch);
 
         // am ajuns cu linia in punctul 2
         if (x1 == x2 && y1 == y2) break;
@@ -91,7 +91,7 @@ void Canvas::DrawCircle(int x, int y, int ray, char ch) {
             int dSq = dx * dx + dy * dy;
 
             if (dSq >= (ray-1)*(ray-1) && dSq <= ray * ray)
-                matrix[i][j] = ch;
+                Canvas::SetPoint(i, j, ch);
         }              
 }
 
@@ -102,6 +102,6 @@ void Canvas::FillCircle(int x, int y, int ray, char ch) {
             int dy = i - y;
 
             if (dx * dx + dy * dy <= ray * ray)
-                matrix[i][j] = ch;
+                Canvas::SetPoint(i, j, ch);
         }               
 }
