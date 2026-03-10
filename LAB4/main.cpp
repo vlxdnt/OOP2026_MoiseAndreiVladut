@@ -8,13 +8,13 @@ int main()
     array.BubbleSort(true);
     array.Print();
 
-    Sort array1(5, 3, 6, 23, 1, 6);
+    Sort array1;
     array1.Print();
     array1.InsertSort(true);
     array1.Print();
 
     char* string = "10,40,100,5,70";
-    Sort array2(string, 15);
+    Sort array2(string);
     array2.Print();
     array2.InsertSort();
     array2.Print();

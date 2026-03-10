@@ -14,13 +14,8 @@ Sort::Sort(int size, int min, int max) {
         vector[i] = rand() % (max - min + 1) + min;
 }
 
-Sort::Sort(std::initializer_list<int> List) {
-    this->size = List.size();
-    this->vector = new int[size];
-    int i = 0;
-    for (int element : List) {
-        vector[i++] = element;
-    }
+Sort::Sort(): vector(new int[5]{1, 3, 4, 2, 5}) {
+    this->size = 5;
 }
 
 Sort::Sort(int* vector, int size) {
@@ -41,17 +36,21 @@ Sort::Sort(int size, ...) {
     va_end(args);
 }
 
-Sort::Sort(char* string, int size) {
+Sort::Sort(char* string) {
     int numberCount = 0;
     int number = 0;
     int numbers[128];
+
+    int size = 0;
+    for (int i = 0; string[i] != '\0'; i++)
+        size++;
+    size++;
     
     for (int i = 0; i < size; i++) {
         if (string[i] >= '0' && string[i] <= '9')
             number = number * 10 + (string[i] - '0');
         else {
             numbers[numberCount++] = number;
-            printf("%d ", number);
             number = 0;
         }
     }
