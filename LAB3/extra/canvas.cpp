@@ -27,7 +27,7 @@ void Canvas::set_pixels(int count, ...) {
     for (int i = 0; i < count; i++) {
         x = va_arg(args, int);
         y = va_arg(args, int);
-        value = static_cast<char>(va_arg(args, int));
+        value = (char)(va_arg(args, int));
         set_pixel(x, y, value);
     }
     va_end (args);
