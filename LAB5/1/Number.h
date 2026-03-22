@@ -2,6 +2,7 @@ class Number {
     private:
         char* number;
         int base;
+        bool isNegative = false;
 
         int GetBase10Value() const;
         void SetFromBase10Value(int value, int newBase);;

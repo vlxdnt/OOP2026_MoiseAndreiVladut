@@ -26,21 +26,23 @@ int Number::GetBase10Value() const {
         int digit = (c >= 'A') ? (c >= 'a' ? c - 'a' + 10 : c - 'A' + 10) : (c - '0');
         value = value * base + digit;
     }
-    return value;
+    return isNegative ? -value : value;
 }
 
 void Number::SetFromBase10Value(int value, int newBase) {
     char buffer[64];
     int index = 0;
     base = newBase;
+    isNegative = (value < 0);
+    long long absValue = isNegative ? -value : value;
 
-    if (value == 0)
+    if (absValue == 0)
         buffer[index++] = '0';
     else {
-        while (value > 0) {
-            int remainder = value % newBase;
+        while (absValue > 0) {
+            int remainder = absValue % newBase;
             buffer[index++] = (remainder < 10) ? ('0' + remainder) : ('A' + remainder - 10);
-            value /= newBase; 
+            absValue /= newBase; 
         }
     }
 
@@ -61,20 +63,37 @@ void Number::SetFromBase10Value(int value, int newBase) {
 
 Number::Number(const char* number, int base) {
     this->base = base;
-    this->number = new char[strlen(number) + 1];
-    strcpy(this->number, number);
+    
+    int startIndex = 0;
+    if (number[0] == '-') {
+        startIndex++;
+        isNegative = true;
+    }
+    else
+        isNegative = false;
+
+    this->number = new char[strlen(number + startIndex) + 1];
+    strcpy(this->number, number + startIndex);
+
+    if (this->number[0] == '0' && this->number[1] == '\0')
+        isNegative = false;
 }
 
 Number::Number(const Number& other) {
     this->base = other.base;
+    isNegative = other.isNegative;
+
     this->number = new char[strlen(other.number) + 1];
     strcpy(this->number, other.number);
 }
 
 Number::Number(Number&& other) {
     this->base = other.base;
+    isNegative = other.isNegative;
     this->number = other.number;
+
     other.number = nullptr; 
+    other.isNegative = false;
 }
 
 Number::Number(int value) {
@@ -89,7 +108,10 @@ Number::~Number() {
 // metode membre
 
 void Number::Print() const {
-    printf("Number: %s, Base: %d\n", number, base);
+    if (isNegative)
+        printf("Number: -%s, Base: %d\n", number, base);
+    else
+        printf("Number: %s, Base: %d\n", number, base);
 }
 
 int Number::GetBase() const {
@@ -113,7 +135,10 @@ void Number::SwitchBase(int newBase) {
 Number& Number::operator=(const Number&& other) {
     if (this != &other) {
         delete[] number; 
+
         this->base = other.base;
+        isNegative = other.isNegative;
+
         number = new char[strlen(other.number) + 1];
         strcpy(this->number, other.number);
     }
@@ -123,8 +148,11 @@ Number& Number::operator=(const Number&& other) {
 Number& Number::operator=(Number&& other) {
     if (this != &other) {
         delete[] number; 
+
         this->base = other.base;
+        isNegative = other.isNegative;
         this->number = other.number;
+
         other.number = nullptr; 
     }
     return *this;
@@ -132,8 +160,21 @@ Number& Number::operator=(Number&& other) {
 
 Number& Number::operator=(const char* str) {
     delete[] number; 
-    this->number = new char[strlen(str) + 1];
-    strcpy(this->number, str);
+
+    int startIndex = 0;
+    if (str[0] == '-') {
+        isNegative = true;
+        startIndex++;
+    }
+    else
+        isNegative = false;
+
+    this->number = new char[strlen(str + startIndex) + 1];
+    strcpy(this->number, str + startIndex);
+
+    if (this->number[0] == '0' && this->number[1] == '\0')
+        isNegative = false;
+
     return *this;
 }
 
