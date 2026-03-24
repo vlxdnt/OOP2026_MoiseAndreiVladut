@@ -34,7 +34,7 @@ void Number::SetFromBase10Value(int value, int newBase) {
     int index = 0;
     base = newBase;
     isNegative = (value < 0);
-    long long absValue = isNegative ? -value : value;
+    int absValue = isNegative ? -value : value;
 
     if (absValue == 0)
         buffer[index++] = '0';
@@ -119,7 +119,10 @@ int Number::GetBase() const {
 }
 
 int Number::GetDigitsCount() const {
-    return strlen(this->number);
+    if (isNegative)
+        return strlen(this->number) - 1;
+    else
+        return strlen(this->number);
 }
 
 void Number::SwitchBase(int newBase) {
