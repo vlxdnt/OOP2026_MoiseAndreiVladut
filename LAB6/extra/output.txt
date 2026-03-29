@@ -1,0 +1,19 @@
+Top node has 4 subnodes
+{
+    "n": null,
+    "array_numbers": [
+        5,
+        10,
+        15
+    ],
+    "array_strings": [
+        "abc",
+        "def",
+        "ghi"
+    ],
+    "info": {
+        "email": "t@gmail.com",
+        "name": "T",
+        "online": true
+    }
+}
