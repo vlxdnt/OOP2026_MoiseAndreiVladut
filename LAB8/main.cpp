@@ -28,6 +28,10 @@ int main()
         }
     }
 
+    if (!word.empty()) {
+        words[word]++;
+    }
+
     priority_queue<pair<int, string>, vector<pair<int,string>>, greater<pair<int,string>>> wordQueue;
     for (const auto &it : words) {
         wordQueue.push({-it.second, it.first});
