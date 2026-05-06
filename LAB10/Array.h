@@ -93,14 +93,17 @@ class Array
         }
 
         Array(const Array<T>& otherArray) {
-            this->Capacity = otherArray->Capacity;
-            this->List = otherArray->List;
-            this->Size = otherArray->Size;
+            Capacity = otherArray.Capacity;
+            Size = otherArray.Size;
+            List = new T * [Capacity];
+            for (int i = 0; i < Size; i++) {
+                List[i] = new T(*otherArray.List[i]);
+            }
         }
 
         T& operator[] (int index) {
             try {
-                if (index > this->Size || index < 0) throw errorRange;
+                if (index > this->Size || index < 0) throw errorRange;  
                 return *this->List[index];
             }
             catch (exception& e) {
@@ -166,10 +169,19 @@ class Array
         }
 
         bool operator=(const Array<T>& otherArray) {
-            if (this == &otherArray) {
-                return true;
+            if (this == &otherArray) return true;
+            for (int i = 0; i < Size; i++) {
+                delete[] List[i];
             }
-            return false;
+            delete[] List;
+
+            Capacity = otherArray.Capacity;
+            Size = otherArray.Size;
+            List = new T * [Capacity];
+            for (int i = 0; i < Size; i++) {
+                List[i] = new T(*otherArray.List[i]);
+            }
+            return true;
         }
 
         void Sort() {

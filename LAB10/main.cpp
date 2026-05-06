@@ -25,6 +25,19 @@ int main() {
         arr += 3;
         arr += 7;
 
+        Array<int> arrCopy = arr; // test copy constructor
+        for (int i = 0; i < arrCopy.GetSize(); i++) {
+            cout << arrCopy[i] << " ";
+        }
+        cout << "\n";
+
+        Array<int> arrAssigned(5);
+        arrAssigned = arr; // test assignment operator
+        for (int i = 0; i < arrAssigned.GetSize(); i++) {
+            cout << arrAssigned[i] << " ";
+        }
+        cout << "\n";
+
         cout << "Original array: ";
         for (int i = 0; i < arr.GetSize(); i++) {
             cout << arr[i] << " ";
