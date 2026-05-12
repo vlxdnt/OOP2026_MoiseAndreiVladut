@@ -81,7 +81,7 @@ class Array
         
         ~Array() {
             for (int i = 0; i < Size; i++) {
-                delete[] List[i];
+                delete List[i];
             }
             delete[] List;
         }
